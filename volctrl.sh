@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+#── Single-instance lock ──────────────────────────────────────────────────────
+lockfile=/tmp/volctrl.lock
+
+# Open the lockfile on FD 9
+exec 9>"$lockfile"
+
+# Try to acquire a non‐blocking lock; exit if already held
+flock -n 9 || exit 0
+
+# When the script exits, FD 9 (and the lock) is automatically released
+#─────────────────────────────────────────────────────────────────────────────
+
 # volctrl.sh — per-app volume, 0–100% clamp, KDE Wayland/X11 + game‐role catch
 
 # Optional debug trace
