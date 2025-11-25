@@ -6,3 +6,5 @@ for example:
 volctrl.sh up 10
 
 volctrl.sh down 2
+
+It should try and get the current pid and fallback to detecting the wine64-preloader binary if it can't; this is because I primarily use it for games and that was how I got it to work more consistently.
