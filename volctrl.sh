@@ -41,6 +41,8 @@ while IFS= read -r line; do
     ids+=("$current")
   elif [[ $line =~ application.process.binary[[:space:]]*=[[:space:]]\"wine64-preloader\" ]]; then
     ids+=("$current")
+  elif [[ $line =~ application.icon_name[[:space:]]*=[[:space:]]\"applications-games\" ]]; then
+    ids+=("$current")
   fi
 done < <(pactl list sink-inputs)
 
